@@ -1,0 +1,20 @@
+{
+  "name": "twd-clean-arch-api",
+  "version": "1.0.0",
+  "description": "<p align=\"center\">     <img src=\"https://img.shields.io/badge/Tools-Docker-informational?style=flat-square&logo=docker&color=2496ED\" alt=\"Docker\" />     <img src=\"https://img.shields.io/badge/Code-NodeJS-informational?style=flat-square&logo=node.js&color=339933\" alt=\"NodeJS\" />     <img src=\"https://img.shields.io/badge/Code-JavaScript-informational?style=flat-square&logo=javascript&color=F7DF1E\" alt=\"JavaScript\" />     <img src=\"https://img.shields.io/badge/DB-MongoDB-informational?style=flat-square&logo=mongodb&color=47A248\" alt=\"MongoDB\" /> </p>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/filipe1309/twd-clean-arch-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/filipe1309/twd-clean-arch-api/issues"
+  },
+  "homepage": "https://github.com/filipe1309/twd-clean-arch-api#readme"
+}
