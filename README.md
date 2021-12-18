@@ -21,6 +21,7 @@ This project was developed following Hotmart's "[Arquitetura Limpa na Prática](
 
 - [Node.js](https://nodejs.org/en/)
 - [TypeScript](https://www.typescriptlang.org/)
+- [Husky](https://typicode.github.io/husky/#/)
 - [Express](https://expressjs.com/)
 - [Nodemailer](https://nodemailer.com/)
 - [MongoDB](https://www.mongodb.com/)

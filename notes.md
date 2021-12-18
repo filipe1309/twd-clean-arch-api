@@ -53,3 +53,8 @@ JSON
 
 Would you like to install them now with npm?  
 Yes
+
+```sh
+npm i -D husky
+npm i -D lint-staged
+```
