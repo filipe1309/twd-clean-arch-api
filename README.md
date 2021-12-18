@@ -1,36 +1,22 @@
-# <p align="center">{{ PROJECT_NAME }}</p>
+# <p align="center">TWD Clean Arch API</p>
 
 <p align="center">
     <img src="https://img.shields.io/badge/Tools-Docker-informational?style=flat-square&logo=docker&color=2496ED" alt="Docker" />
-    <img src="https://img.shields.io/badge/Code-React-informational?style=flat-square&logo=react&color=61DAFB" alt="React" />
-    <img src="https://img.shields.io/badge/Code-Go-informational?style=flat-square&logo=go&color=00ADD8" alt="Go" />
-    <img src="https://img.shields.io/badge/Code-PHP-informational?style=flat-square&logo=php&color=777bb4&logoColor=8892BF" alt="PHP" />
-    <img src="https://img.shields.io/badge/Code-Laravel-informational?style=flat-square&logo=laravel&color=FF2D20" alt="Laravel" />
-    <img src="https://img.shields.io/badge/Code-Lumen-informational?style=flat-square&logo=lumen&color=F4645F" alt="Lumen" />
-    <img src="https://img.shields.io/badge/Code-JavaScript-informational?style=flat-square&logo=javascript&color=F7DF1E" alt="JavaScript" />
     <img src="https://img.shields.io/badge/Code-NodeJS-informational?style=flat-square&logo=node.js&color=339933" alt="NodeJS" />
-    <img src="https://img.shields.io/badge/Tools-MySQL-informational?style=flat-square&logo=mysql&color=4479A1&logoColor=2496ED" alt="MySQL" />
-    <img src="https://img.shields.io/badge/Tools-SQLServer-informational?style=flat-square&logo=microsoft-sql-server&color=CC2927&logoColor=CC2927" alt="SQLServer" />
-    <img src="https://img.shields.io/badge/php-8.0-green" alt="PHP"/>
-    <img src="https://img.shields.io/badge/lumen-8.0-orange" alt="Lumen"/>
-    <img src="https://img.shields.io/badge/nodejs-15.0-green" alt="NodeJS"/>
+    <img src="https://img.shields.io/badge/Code-JavaScript-informational?style=flat-square&logo=javascript&color=F7DF1E" alt="JavaScript" />
+    <img src="https://img.shields.io/badge/DB-MongoDB-informational?style=flat-square&logo=mongodb&color=47A248" alt="MongoDB" />
 </p>
 
 ## 💬 About
 
-This project was developed following {{ COURSE_SOURCE }} "[{{ COURSE_NAME }}]({{ COURSE_LINK }})" {{ COURSE_TYPE }}.
+This project was developed following Hotmart's "[Arquitetura Limpa na Prática](https://arquiteturalimpa.club.hotmart.com/)" classes.
 
 ## :computer: Technologies
 
-- [PHP](https://www.php.net/)
-- [Go](https://golang.org/)
 - [Node.js](https://nodejs.org/en/)
-- [Nginx](https://www.nginx.com/)
-- [MySQL](https://www.mysql.com/)
-- [Node MySQL2](https://www.npmjs.com/package/mysql2)
+- [MongoDB](https://www.mongodb.com/)
 - [Docker](https://www.docker.com/)
 - [Docker Compose](https://docs.docker.com/compose/)
-- [Dockerize](https://github.com/jwilder/dockerize)
 
 ## :scroll: Requirements
 
@@ -40,11 +26,11 @@ This project was developed following {{ COURSE_SOURCE }} "[{{ COURSE_NAME }}]({{
 ## :cd: Installation
 
 ```sh
-git clone git@github.com:{{ GITHUB_USER }}/{{ PROJECT_REPO_NAME }}.git
+git clone git@github.com:filipe1309/twd-clean-arch-api.git
 ```
 
 ```sh
-cd {{ PROJECT_REPO_NAME }}
+cd twd-clean-arch-api
 ```
 
 ## :runner: Running
@@ -76,17 +62,17 @@ Please make sure to update tests as appropriate. -->
 ## About Me
 
 <p align="center">
-    <a style="font-weight: bold" href="https://www.linkedin.com/in/{{ GITHUB_USER }}/">
-    <img style="border-radius:50%" width="100px; "src="https://github.com/{{ GITHUB_USER }}.png"/>
+    <a style="font-weight: bold" href="https://www.linkedin.com/in/filipe1309/">
+    <img style="border-radius:50%" width="100px; "src="https://github.com/filipe1309.png"/>
     </a>
 </p>
 
 ---
 
 <p align="center">
-    Done with ♥ by <a style="font-weight: bold" href="https://www.linkedin.com/in/{{ GITHUB_USER }}/">{{ GIT_USERNAME }}</a> 🖖
+    Done with ♥  by <a style="font-weight: bold" href="https://www.linkedin.com/in/filipe1309/">Filipe Leuch Bonfim</a> 🖖
 </p>
 
 ---
 
-> @ Generated with [ShubcoGen™](https://github.com/filipe1309/shubcogen) {{ VERSION }}
+> @ Generated with [ShubcoGen Template™](https://github.com/filipe1309/shubcogen-template) 0.21.2
