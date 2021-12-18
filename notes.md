@@ -57,4 +57,25 @@ Yes
 ```sh
 npm i -D husky
 npm i -D lint-staged
+
+npm i -D jest @types/jest ts-jest
+./node_modules/.bin/jest --init
 ```
+Would you like to use Jest when running "test" script in "package.json"?  
+Y
+
+Would you like to use Typescript for the configuration file?   
+N
+
+Choose the test environment that will be used for testing  
+Node
+
+Do you want Jest to add coverage reports?  
+y
+
+Which provider should be used to instrument code for coverage?  
+v8
+
+ Automatically clear mock calls, instances and results before every test?  
+ y
+
