@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/filipe1309/twd-clean-arch-api/issues"
   },
-  "homepage": "https://github.com/filipe1309/twd-clean-arch-api#readme"
+  "homepage": "https://github.com/filipe1309/twd-clean-arch-api#readme",
+  "devDependencies": {
+    "git-commit-msg-linter": "^3.2.8"
+  }
 }
