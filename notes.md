@@ -13,4 +13,5 @@ https://www.conventionalcommits.org/en/v1.0.0/
 npm init -y
 
 npm i -D git-commit-msg-linter
+npm i -D typescript @types/node
 ```
