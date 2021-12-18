@@ -21,8 +21,7 @@ npm i -D eslint
 
 ### VS Code 
 
-ESLint
-
+ESLint  
 https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
 
 -> ESLint: Create ESLint configuration
@@ -79,3 +78,6 @@ v8
  Automatically clear mock calls, instances and results before every test?  
  y
 
+### VS Code
+NPM-Scripts  
+VS Marketplace Link: https://marketplace.visualstudio.com/items?itemName=jianglinghao.vscode-npm-scripts
