@@ -1,4 +1,4 @@
-# <p align="center">TWD Clean Arch API</p>
+# <p align="center">TWD Clean Arch API </p>
 
 <p align="center">
     <img src="https://img.shields.io/badge/Tools-Docker-informational?style=flat-square&logo=docker&color=2496ED" alt="Docker" />
@@ -9,12 +9,23 @@
 
 ## 💬 About
 
-This project was developed following Hotmart's "[Arquitetura Limpa na Prática](https://arquiteturalimpa.club.hotmart.com/)" classes.
+This project was developed following Hotmart's "[Arquitetura Limpa na Prática](https://arquiteturalimpa.club.hotmart.com/)" classes of [Otávio Lemos](https://www.linkedin.com/in/otavio-lemos-0271399/).
+
+### Subjects
+
+  - Clean Architecture
+  - TDD
+  - SOLID
 
 ## :computer: Technologies
 
 - [Node.js](https://nodejs.org/en/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Express](https://expressjs.com/)
+- [Nodemailer](https://nodemailer.com/)
 - [MongoDB](https://www.mongodb.com/)
+- [Heroku](https://www.heroku.com/)
+- [Jest](https://jestjs.io/)
 - [Docker](https://www.docker.com/)
 - [Docker Compose](https://docs.docker.com/compose/)
 
