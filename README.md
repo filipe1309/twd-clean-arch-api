@@ -17,6 +17,10 @@ This project was developed following Hotmart's "[Arquitetura Limpa na Prática](
   - TDD
   - SOLID
 
+### API Requirements
+
+[Access Here](/requirements/requirements.md)
+
 ## :computer: Technologies
 
 - [Node.js](https://nodejs.org/en/)
