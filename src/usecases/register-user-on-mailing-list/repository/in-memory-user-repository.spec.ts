@@ -6,8 +6,8 @@ describe('In memory user repository', () => {
   test('should return null if user is not found', async () => {
     const email = 'john.doe@test.com'
     const users: UserData[] = []
-    const repo: UserRepository = new InMemoryUserRepository(users)
-    const user = await repo.findUserByEmail(email)
+    const sut: UserRepository = new InMemoryUserRepository(users)
+    const user = await sut.findUserByEmail(email)
     expect(user).toBeNull()
   })
 
@@ -15,16 +15,16 @@ describe('In memory user repository', () => {
     const name = 'John Doe'
     const email = 'john.doe@test.com'
     const users: UserData[] = []
-    const repo: UserRepository = new InMemoryUserRepository(users)
-    await repo.add({ name, email })
-    const user = await repo.findUserByEmail(email)
+    const sut: UserRepository = new InMemoryUserRepository(users)
+    await sut.add({ name, email })
+    const user = await sut.findUserByEmail(email)
     expect(user.name).toBe(name)
   })
 
   test('should return all users', async () => {
     const users: UserData[] = [{ name: 'user 1', email: 'user1@test.com' }, { name: 'user 2', email: 'user2@test.com' }]
-    const repo: UserRepository = new InMemoryUserRepository(users)
-    const returnedUsers = await repo.findAllUsers()
+    const sut: UserRepository = new InMemoryUserRepository(users)
+    const returnedUsers = await sut.findAllUsers()
     expect(returnedUsers.length).toBe(users.length)
   })
 })
