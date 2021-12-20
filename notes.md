@@ -57,6 +57,7 @@ Yes
 npm i -D husky
 npm set-script prepare "husky install"
 npm run prepare
+npx husky add .husky/pre-commit "npx lint-staged"
 
 npm i -D lint-staged
 
