@@ -55,6 +55,9 @@ Yes
 
 ```sh
 npm i -D husky
+npm set-script prepare "husky install"
+npm run prepare
+
 npm i -D lint-staged
 
 npm i -D jest @types/jest ts-jest
@@ -88,4 +91,6 @@ Dev Process
 TDD
 
 ## CLASS-2
+
+## CLASS-3
 
