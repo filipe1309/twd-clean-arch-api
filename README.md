@@ -86,9 +86,9 @@ Please make sure to update tests as appropriate. -->
 ---
 
 <p align="center">
-    Done with ♥  by <a style="font-weight: bold" href="https://www.linkedin.com/in/filipe1309/">Filipe Leuch Bonfim</a> 🖖
+    Done with :heart:&nbsp;&nbsp;by <a style="font-weight: bold" href="https://www.linkedin.com/in/filipe1309/">Filipe Leuch Bonfim</a> 🖖
 </p>
 
 ---
 
-> @ Generated with [ShubcoGen Template™](https://github.com/filipe1309/shubcogen-template) 0.21.2
+> @ Generated with [ShubcoGen Template™](https://github.com/filipe1309/shubcogen-template) 0.0.1
