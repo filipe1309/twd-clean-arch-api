@@ -40,4 +40,9 @@ describe('Email validation', () => {
     const email = 'local@'
     expect(Email.validate(email)).toBeFalsy()
   })
+
+  test('should not accept email domain with each part larger than 63 chars', () => {
+    const email = 'local@' + 'd'.repeat(64) + '.com'
+    expect(Email.validate(email)).toBeFalsy()
+  })
 })
