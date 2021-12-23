@@ -5,7 +5,8 @@
 exec 0< /dev/tty
 
 .shub/bin/shub-logo.sh
-source .shub/bin/colors.sh        
+source .shub/bin/colors.sh   
+source .shub/bin/helpers.sh
 
 echo "---------------------------------------------"
 
@@ -110,25 +111,6 @@ JSON_TEMPLATE='{
         read -r -p "Use $(echo -e $BG_GREEN"shub-config.json"$NO_BG) configs [$(echo -e $BG_GREEN"Y"$NO_BG)/n]? " response
         response=$(echo "$response" | tr '[:upper:]' '[:lower:]') # tolower
         if [[ $response =~ ^(yes|y| ) ]] || [[ -z $response ]]; then
-            function parse_json()
-            {
-                echo $1 | \
-                sed -e 's/[{}]/''/g' | \
-                sed -e 's/", "/'\",\"'/g' | \
-                sed -e 's/" ,"/'\",\"'/g' | \
-                sed -e 's/" , "/'\",\"'/g' | \
-                sed -e 's/","/'\"---SEPERATOR---\"'/g' | \
-                awk -F=':' -v RS='---SEPERATOR---' "\$1~/\"$2\"/ {print}" | \
-                sed -e "s/\"$2\"://" | \
-                tr -d "\n\t" | \
-                sed -e 's/\\"/"/g' | \
-                sed -e 's/\\\\/\\/g' | \
-                sed -e 's/^[ \t]*//g' | \
-                sed -e 's/^"//'  -e 's/"$//' | \
-                sed -e 's/"//' | \
-                sed -e 's/ $//'
-            }
-
             # Read json file content
             JSON_CONFIG="$(cat shub-config.json)"
 
@@ -154,8 +136,9 @@ JSON_TEMPLATE='{
     echo ""
     echo "---------------------------------------------"
 
-    echo $JSON_CONFIG
-
+    JSONF=$(format_json "$JSON_CONFIG")
+    echo "$JSONF"
+    
     echo "---------------------------------------------"
     echo ""
 
@@ -179,7 +162,7 @@ $JSON_CONFIG
 EOF
     fi
 
-    read -r -p "Keep shub scripts (deploy, init, self-update...) [$(echo -e $BG_GREEN"Y"$NO_BG)/n]? " response
+    read -r -p "Keep shub scripts (deploy, init...) [$(echo -e $BG_GREEN"Y"$NO_BG)/n]? " response
     response=$(echo "$response" | tr '[:upper:]' '[:lower:]') # tolower
     if [[ $response =~ ^(yes|y| ) ]] || [[ -z $response ]]; then
         echo "OK =)"
@@ -197,8 +180,9 @@ EOF
             fi
         fi
     else
+        # Remove shub scripts
         rm -rf .shub
-        rm shub-deploy.sh
+        rm deploy.sh
     fi
 
     echo "---------------------------------------------"
@@ -207,7 +191,8 @@ EOF
     echo ""
     echo "---------------------------------------------"
 
-
+    # Always remove init script
+    rm init.sh
 else
     exit 0;
 fi
