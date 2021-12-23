@@ -18,6 +18,11 @@ export class Email {
       return false
     }
 
+    const domainParts = domain.split('.')
+    if (domainParts.some((part) => part.length > 63)) {
+      return false
+    }
+
     return true
   }
 }
