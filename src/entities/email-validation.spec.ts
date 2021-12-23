@@ -30,4 +30,9 @@ describe('Email validation', () => {
     const email = 'l'.repeat(64) + '@' + 'd'.repeat(128) + '.' + 'd'.repeat(127)
     expect(Email.validate(email)).toBeFalsy()
   })
+
+  test('should not accept empty email local part', () => {
+    const email = '@test.com'
+    expect(Email.validate(email)).toBeFalsy()
+  })
 })
