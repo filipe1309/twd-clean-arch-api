@@ -1,26 +1,25 @@
 import { User } from './user'
-import { left } from '../shared/either'
-import { InvalidEmailError } from './errors/invalid-email-error'
-import { InvalidNameError } from './errors/invalid-name-error'
 
 describe('User domain entity', () => {
   test('should not create user with invalid e-mail address', () => {
     const invalidEmail = 'invalid-email'
-    const error = User.create({ name: 'John Doe', email: invalidEmail })
-    expect(error).toEqual(left(new InvalidEmailError()))
+    const error = User.create({ name: 'John Doe', email: invalidEmail }).value as Error
+    expect(error.name).toEqual('InvalidEmailError')
+    expect(error.message).toEqual(`Invalid e-mail: ${invalidEmail}`)
   })
 
-  test('should not create user with invalid name', () => {
+  test('should not create user with invalid name (too few chars)', () => {
     const invalidName = '0      '
-    const error = User.create({ name: invalidName, email: 'john.doe@test.com' })
-    expect(error).toEqual(left(new InvalidNameError()))
+    const error = User.create({ name: invalidName, email: 'john.doe@test.com' }).value as Error
+    expect(error.name).toEqual('InvalidNameError')
+    expect(error.message).toEqual(`Invalid name: ${invalidName}`)
   })
 
-  test('should not create user with a large name', () => {
-    const invalidName = '0'.repeat(257)
-    const error = User.create({ name: invalidName, email: 'john.doe@test.com' })
-    expect(error).toEqual(left(new InvalidNameError()))
-  })
+  // test('should not create user with invalid name (too large)', () => {
+  //   const invalidName = '0'.repeat(257)
+  //   const error = User.create({ name: invalidName, email: 'john.doe@test.com' })
+  //   expect(error).toEqual(left(new InvalidNameError()))
+  // })
 
   test('should create user with valid data', () => {
     const validName = 'John Doe'
