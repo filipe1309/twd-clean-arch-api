@@ -1,5 +1,7 @@
 export class InvalidNameError extends Error {
-  constructor () {
-    super('Invalid name address')
+  public readonly name = 'InvalidNameError'
+
+  constructor (name: string) {
+    super(`Invalid name: ${name}`)
   }
 }
