@@ -1,4 +1,5 @@
 import { InvalidEmailError } from '../../entities/errors/invalid-email-error'
+import { InvalidNameError } from '../../entities/errors/invalid-name-error'
 import { UserData } from '../../entities/user-data'
 import { left } from '../../shared/either'
 import { UserRepository } from './ports/user-repository'
@@ -31,5 +32,19 @@ describe('Register user on mailing list use case', () => {
     const user = await repo.findUserByEmail(email)
     expect(user).toBeNull()
     expect(response).toEqual(left(new InvalidEmailError()))
+  })
+
+  test('should not add user with invalid name to mainling list', async () => {
+    const users: UserData[] = []
+    console.log(users)
+    const repo: UserRepository = new InMemoryUserRepository(users)
+    const usercase: RegisterUserOnMailingList = new RegisterUserOnMailingList(repo)
+    const name = ''
+    const email = 'john.doe@test.com'
+    // TODO: replace registerUserOnMailingList with perform method
+    const response = await usercase.registerUserOnMailingList({ name, email })
+    const user = await repo.findUserByEmail(email)
+    expect(user).toBeNull()
+    expect(response).toEqual(left(new InvalidNameError()))
   })
 })
