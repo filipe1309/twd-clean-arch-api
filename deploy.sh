@@ -1,3 +1,3 @@
 #!/bin/bash
 
- ./.shub/bin/deploy.sh
+ ./.shub/bin/deploy.sh $*
