@@ -27,6 +27,12 @@ module.exports = {
     '^.+\\.ts$': 'ts-jest'
   },
 
+  // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
+  moduleNameMapper: {
+    '^@/(.*)$': '<rootDir>/src/$1',
+    '^@test/(.*)$': '<rootDir>/test/$1'
+  },
+
   // All imported modules in your tests should be mocked automatically
   // automock: false,
 
@@ -96,9 +102,6 @@ module.exports = {
   //   'json',
   //   'node'
   // ],
-
-  // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
-  // moduleNameMapper: {},
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
   // modulePathIgnorePatterns: [],
