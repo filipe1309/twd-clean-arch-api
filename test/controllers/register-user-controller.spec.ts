@@ -1,3 +1,4 @@
+import { MissingParamError } from '@/controllers/errors/missing-param-error'
 import { HttpRequest, HttpResponse } from '@/controllers/ports'
 import { RegisterUserController } from '@/controllers/register-user-controller'
 import { UserData } from '@/entities'
@@ -56,5 +57,54 @@ describe('Register user with web controller', () => {
 
     expect(response.statusCode).toBe(400)
     expect(response.body).toBeInstanceOf(InvalidEmailError)
+  })
+
+  test('should return status code 400 when request is missing user name', async () => {
+    const request: HttpRequest = {
+      body: {
+        email: 'john.doe@test.com'
+      }
+    }
+    const users: UserData[] = []
+    const repo: UserRepository = new InMemoryUserRepository(users)
+    const usecase: RegisterUserOnMailingList = new RegisterUserOnMailingList(repo)
+    const controller: RegisterUserController = new RegisterUserController(usecase)
+    const response: HttpResponse = await controller.handle(request)
+
+    expect(response.statusCode).toBe(400)
+    expect(response.body).toBeInstanceOf(MissingParamError)
+    expect((response.body as Error).message).toBe('Missing parameter from request: name')
+  })
+
+  test('should return status code 400 when request is missing user email', async () => {
+    const request: HttpRequest = {
+      body: {
+        name: 'John Doe'
+      }
+    }
+    const users: UserData[] = []
+    const repo: UserRepository = new InMemoryUserRepository(users)
+    const usecase: RegisterUserOnMailingList = new RegisterUserOnMailingList(repo)
+    const controller: RegisterUserController = new RegisterUserController(usecase)
+    const response: HttpResponse = await controller.handle(request)
+
+    expect(response.statusCode).toBe(400)
+    expect(response.body).toBeInstanceOf(MissingParamError)
+    expect((response.body as Error).message).toBe('Missing parameter from request: email')
+  })
+
+  test('should return status code 400 when request is missing user name and email', async () => {
+    const request: HttpRequest = {
+      body: {}
+    }
+    const users: UserData[] = []
+    const repo: UserRepository = new InMemoryUserRepository(users)
+    const usecase: RegisterUserOnMailingList = new RegisterUserOnMailingList(repo)
+    const controller: RegisterUserController = new RegisterUserController(usecase)
+    const response: HttpResponse = await controller.handle(request)
+
+    expect(response.statusCode).toBe(400)
+    expect(response.body).toBeInstanceOf(MissingParamError)
+    expect((response.body as Error).message).toBe('Missing parameter from request: name email')
   })
 })
