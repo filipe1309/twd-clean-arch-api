@@ -6,7 +6,7 @@ import { InvalidEmailError, InvalidNameError } from '@/entities/errors'
 import { UseCase } from '@/usecases/ports'
 import { RegisterUserOnMailingList } from '@/usecases/register-user-on-mailing-list'
 import { UserRepository } from '@/usecases/register-user-on-mailing-list/ports'
-import { InMemoryUserRepository } from '@test/usercases/register-user-on-mailing-list/repository'
+import { InMemoryUserRepository } from '@/usecases/register-user-on-mailing-list/repositories'
 
 describe('Register user with web controller', () => {
   const users: UserData[] = []
