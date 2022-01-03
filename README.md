@@ -1,7 +1,7 @@
 # <p align="center">TWD Clean Arch API </p>
 
 <p align="center">
-    <img src="https://img.shields.io/badge/Tools-Docker-informational?style=flat-square&logo=docker&color=2496ED" alt="Docker" />
+    <!-- <img src="https://img.shields.io/badge/Tools-Docker-informational?style=flat-square&logo=docker&color=2496ED" alt="Docker" /> -->
     <img src="https://img.shields.io/badge/Code-NodeJS-informational?style=flat-square&logo=node.js&color=339933" alt="NodeJS" />
     <img src="https://img.shields.io/badge/Code-JavaScript-informational?style=flat-square&logo=javascript&color=F7DF1E" alt="JavaScript" />
     <img src="https://img.shields.io/badge/DB-MongoDB-informational?style=flat-square&logo=mongodb&color=47A248" alt="MongoDB" />
@@ -31,13 +31,16 @@ This project was developed following Hotmart's "[Arquitetura Limpa na Prática](
 - [MongoDB](https://www.mongodb.com/)
 - [Heroku](https://www.heroku.com/)
 - [Jest](https://jestjs.io/)
-- [Docker](https://www.docker.com/)
-- [Docker Compose](https://docs.docker.com/compose/)
+<!-- - [Docker](https://www.docker.com/)
+- [Docker Compose](https://docs.docker.com/compose/) -->
 
 ## :scroll: Requirements
 
-- [Docker](https://www.docker.com/)
-- [Docker Compose](https://docs.docker.com/compose/)
+- [Node.js](https://nodejs.org/en/)
+- [npm](https://www.npmjs.com/)
+
+<!-- - [Docker](https://www.docker.com/)
+- [Docker Compose](https://docs.docker.com/compose/) -->
 
 ## :cd: Installation
 
