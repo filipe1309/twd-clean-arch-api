@@ -12,10 +12,11 @@ This is a `template` with some scripts to `automate` `deploy` and the `initial s
 - [Git](https://git-scm.com/)
 - [Curl](https://curl.haxx.se/)
 - [Bash](https://www.gnu.org/software/bash/)
+- [iconv](https://ss64.com/bash/iconv.html)
 
 ## 🕹 Usage
 
-## ☝️ First things first (once)
+### ☝️ First things first (once)
 
 ```sh
 ./init.sh
@@ -28,7 +29,7 @@ This script will fill the `README.md` file with your project's information. And 
 `.shub-config` example:
 ```json
 {
-    "version": "0.0.4",
+    "version": "v0.0.4",
     "username": "John Doe",
     "github_username": "john-doe",
     "project_name": "clean arch api",
@@ -43,7 +44,7 @@ This script will fill the `README.md` file with your project's information. And 
 }
 ```
 
-### ❓ What will happen?
+#### ❓ What will happen?
 
 After running this script, you'll be prompted to enter your project's information and some configs. Don't worry, you can always change this later at `shub-config.json`.
 
@@ -53,7 +54,7 @@ After running this script, you'll be prompted to enter your project's informatio
 > 💡 You can edit the `.shub-config` file to change the project's information.  
 > 💡 You can user the `.shub-config` file in other projects to share your project's information.
 
-## 🚀 Let's deploy
+### 🚀 Let's deploy
 
 
 ```sh
@@ -65,7 +66,7 @@ After running this script, you'll be prompted to enter your project's informatio
 Use `./deploy.sh` to deploy your project on GitHub.
 > 💡 This script is optional.
 
-### ❓ What will happen?
+#### ❓ What will happen?
 
 This script auto-increments the version number of the branch and creates a new tag from branch name.
 
@@ -79,10 +80,7 @@ For example, if your actual branch is `class-1`, after running this script, the 
 4. A new branch `class-2` will be created
 5. `notes.md` will be update with the new "project version number" like `## CLASS-2`
 
-
-
-
-### 🤷‍♂️ Optional arguments
+#### 🤷‍♂️ Optional arguments
 
 ```sh
 ./deploy.sh [-a] [-m message] [-h]
@@ -95,15 +93,14 @@ For example, if your actual branch is `class-1`, after running this script, the 
 `-m` Set tag message.  
 `-h` Show help.  
 
-
-## Features
+## 🆕 Features
 - [x] `Readme.md` template
 - [x] `notes.md` template
 - [x] Deploy script (`deploy.sh`)
 - [x] Deploy script arguments (`[-a] [-m message] [-h]`)
 - [x] Self-update (based on latest release)
 - [x] Auto tagging
-
+- [x] State file (to save deploy state)
 
 ## 📌 Roadmap
 - [ ] Improve `README.md`
@@ -113,4 +110,12 @@ For example, if your actual branch is `class-1`, after running this script, the 
 - [ ] Add badges generation
 - [ ] Save deploy state (if an error occurs)
 - [ ] Add tests (with [Bat](https://github.com/bats-core/bats-core))
-- [ ] Add state file (to save deploy state)
+- [ ] Add a Dev mode
+- [ ] Fix `confirm` exit behaviour
+
+## 🔗 Useful links
+- https://gitignore.io
+- https://github.com/github/gitignore
+- https://shields.io/
+- https://simpleicons.org/
+- https://github.com/simple-icons/simple-icons/blob/develop/slugs.md
