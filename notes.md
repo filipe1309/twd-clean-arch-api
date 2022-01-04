@@ -122,3 +122,7 @@ npm i -D supertest @types/supertest
 
 ## CLASS-15
 
+```sh
+# rm -rf for node. To remove dist folder
+npm i -D rimraf @types/rimraf
+```
