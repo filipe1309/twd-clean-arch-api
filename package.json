@@ -4,6 +4,7 @@
   "description": "<p align=\"center\">     <img src=\"https://img.shields.io/badge/Tools-Docker-informational?style=flat-square&logo=docker&color=2496ED\" alt=\"Docker\" />     <img src=\"https://img.shields.io/badge/Code-NodeJS-informational?style=flat-square&logo=node.js&color=339933\" alt=\"NodeJS\" />     <img src=\"https://img.shields.io/badge/Code-JavaScript-informational?style=flat-square&logo=javascript&color=F7DF1E\" alt=\"JavaScript\" />     <img src=\"https://img.shields.io/badge/DB-MongoDB-informational?style=flat-square&logo=mongodb&color=47A248\" alt=\"MongoDB\" /> </p>",
   "main": "index.js",
   "scripts": {
+    "start": "node dist/main/server.js",
     "build": "rimraf dist && tsc -p tsconfig-build.json",
     "test": "jest --passWithNoTests --silent --noStackTrace --runInBand",
     "test-verbose": "jest --passWithNoTests --runInBand",
