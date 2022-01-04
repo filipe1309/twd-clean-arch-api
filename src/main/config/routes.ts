@@ -6,7 +6,8 @@ export default (app: Express): void => {
   const router = Router()
   app.use('/api', router)
 
-  readdirSync(path.join(__dirname, 'routes'))
+  const pathToRoutes = path.join(process.cwd(), 'src', 'main', 'routes')
+  readdirSync(pathToRoutes)
     .filter((file) => file.endsWith('.ts'))
-    .map(async file => { (await import(path.join(__dirname, 'routes', '/') + file)).default(router) })
+    .map(async file => { (await import(pathToRoutes + `/${file}`)).default(router) })
 }
