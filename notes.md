@@ -112,7 +112,8 @@ TDD
 ## CLASS-13
 
 ```sh
-npm i express @types/express
+npm i express
+npm i -D @types/express
 
 npm i -D supertest @types/supertest
 ```
@@ -125,4 +126,8 @@ npm i -D supertest @types/supertest
 ```sh
 # rm -rf for node. To remove dist folder
 npm i -D rimraf @types/rimraf
+
+# Map ts paths to js files
+npm i module-alias 
+npm i -D @types/module-alias
 ```
