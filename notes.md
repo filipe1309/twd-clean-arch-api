@@ -140,4 +140,5 @@ https://github.com/shelfio/jest-mongodb
 npm i -D @shelf/jest-mongodb
 
 npm i mongodb
+npm i -D @types/mongodb
 ```
