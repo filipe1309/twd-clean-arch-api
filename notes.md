@@ -132,7 +132,12 @@ npm i module-alias
 npm i -D @types/module-alias
 ```
 ## CLASS-16
+
+https://github.com/shelfio/jest-mongodb
+
 ```sh
 # Lig to test mongodb in memory
 npm i -D @shelf/jest-mongodb
+
+npm i mongodb
 ```
