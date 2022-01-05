@@ -8,7 +8,8 @@ export default (app: Express): void => {
 
   const pathToRoutes = path.join(__dirname, '..', 'routes')
 
+  console.log(`Loading routes from ${pathToRoutes}`)
+
   readdirSync(pathToRoutes)
-    .filter((file) => file.endsWith('.ts'))
     .map(async file => { (await import(pathToRoutes + `/${file}`)).default(router) })
 }
