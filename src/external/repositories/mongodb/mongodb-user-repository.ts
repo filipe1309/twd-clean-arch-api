@@ -22,7 +22,7 @@ export class MongodbUserRepository implements UserRepository {
     return user
   }
 
-  findAllUsers (): Promise<UserData[]> {
-    throw new Error('Method not implemented.')
+  async findAllUsers (): Promise<any[]> {
+    return await MongoHelper.getCollection('users').find().toArray()
   }
 }
