@@ -8,14 +8,10 @@ export const MongoHelper = {
   async disconnect (): Promise<void> {
     await this.client.close()
   },
-  async getCollection (name: string): Promise<Collection> {
-    if (!this.client?.isConnected()) {
-      await this.connect(process.env.MONGO_URL!)
-    }
-
+  getCollection (name: string): Collection {
     return this.client.db().collection(name)
   },
-  clearCollection (name: string): Promise<void> {
-    return this.getCollection(name).then(collection => collection.deleteMany({}))
+  clearCollection (name: string): void {
+    return this.getCollection(name).deleteMany({})
   }
 }
