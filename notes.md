@@ -131,3 +131,8 @@ npm i -D rimraf @types/rimraf
 npm i module-alias 
 npm i -D @types/module-alias
 ```
+## CLASS-16
+```sh
+# Lig to test mongodb in memory
+npm i -D @shelf/jest-mongodb
+```
