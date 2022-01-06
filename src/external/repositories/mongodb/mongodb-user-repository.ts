@@ -7,7 +7,8 @@ export class MongodbUserRepository implements UserRepository {
     const userCollection = MongoHelper.getCollection('users')
     const exists = await this.exists(user)
     if (!exists) {
-      await userCollection.insertOne(user)
+      const userClone = { ...user }
+      await userCollection.insertOne(userClone)
     }
   }
 
