@@ -43,22 +43,21 @@ class EmailServiceErrorStub implements EmailService {
 describe('Send email to user', () => {
   test('should email user with valid name and email address', async () => {
     const emailServiceStub = new EmailServiceStub()
-    const usercase = new SendEmail(emailOptions, emailServiceStub)
+    const usercase: SendEmail = new SendEmail(emailOptions, emailServiceStub)
     const response = await usercase.perform({ name: toName, email: toEmail })
     expect(response).toBeInstanceOf(Right)
-    // expect(response.value.to).toBe(emailOptions.to)
   })
 
   test('should email user with invalid email address', async () => {
     const emailServiceStub = new EmailServiceStub()
-    const usercase = new SendEmail(emailOptions, emailServiceStub)
+    const usercase: SendEmail = new SendEmail(emailOptions, emailServiceStub)
     const response = await usercase.perform({ name: toName, email: 'invalid' })
     expect(response).toBeInstanceOf(Left)
   })
 
   test('should return error when email service fails', async () => {
     const emailServiceErrorStub = new EmailServiceErrorStub()
-    const usercase = new SendEmail(emailOptions, emailServiceErrorStub)
+    const usercase: SendEmail = new SendEmail(emailOptions, emailServiceErrorStub)
     const response = await usercase.perform({ name: toName, email: toEmail })
     expect(response.value).toBeInstanceOf(EmailServiceError)
   })
