@@ -26,9 +26,7 @@ export class RegisterUserController {
         return badRequest(userOrError.value)
       }
 
-      if (userOrError.isRight()) {
-        return created(userOrError.value)
-      }
+      return created(userOrError.value)
     } catch (error) {
       return serverError(error)
     }
