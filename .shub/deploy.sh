@@ -5,11 +5,9 @@
 .shub/shub-logo.sh
 source .shub/colors.sh
 source .shub/helpers.sh
+source .shub/shub-envs.sh
 
 read_arguments $*
-
-VERSION=$(head -n 1 .shub/version)
-STATE="0"
 
 echo -e "${GREEN}"
 echo "#############################################"
@@ -35,41 +33,13 @@ if [ -f ".shub-state.ini" ]; then
 fi
 
 
-if test $STATE -lt 1; then
-    # Init variables
-    JSON_CONFIG="$(cat shub-config.json)"
-    COURSE_TYPE=$(parse_json "$JSON_CONFIG" course_type)
-    ## Git variables
-    GIT_BRANCH=$(git branch --show-current)
-    GIT_DEFAULT_BRANCH=$(git remote show origin | grep 'HEAD' | cut -d':' -f2 | sed -e 's/^ *//g' -e 's/ *$//g')
-    [ $GIT_DEFAULT_BRANCH = "(unknown)" ] && GIT_DEFAULT_BRANCH="main"
-    FAILED_MSG="\u274c ERROR =/"
-    ## Course variables
-    IFS='-' read -ra ADDR <<< "$GIT_BRANCH"
-    CLASS_TYPE="${ADDR[0]}-"
-    if [[ ${ADDR[1]} == *"."* ]]; then
-        IFS='.' read -ra ADDR <<< "${ADDR[1]}"
-        CLASS_NUMBER="$CLASS_NUMBER ${ADDR[1]}"
-        CLASS_TYPE="${CLASS_TYPE}${ADDR[0]}."
-    fi
-    CLASS_NUMBER=${ADDR[1]}
-    ## Git variables based on course variables
-    GIT_BRANCH_NEXT_CLASS=$CLASS_TYPE$(($CLASS_NUMBER + 1))
-    GIT_BRANCH_NEXT_CLASS_LW=$(echo "$GIT_BRANCH_NEXT_CLASS" | tr '[:upper:]' '[:lower:]')  # tolower
-    GIT_BRANCH_NEXT_CLASS_UP=$(echo "$GIT_BRANCH_NEXT_CLASS" | tr '[:lower:]' '[:upper:]')  # toupper
-
+if test $STATE -lt $STATE_STEP_SHUB_FILES_ID; then
     save_state_var "FAILED_MSG" "$FAILED_MSG"
     save_state_var "GIT_BRANCH" "$GIT_BRANCH"
     save_state_var "GIT_BRANCH_NEXT_CLASS" "$GIT_BRANCH_NEXT_CLASS"
     save_state_var "GIT_BRANCH_NEXT_CLASS_LW" "$GIT_BRANCH_NEXT_CLASS_LW"
     save_state_var "GIT_BRANCH_NEXT_CLASS_UP" "$GIT_BRANCH_NEXT_CLASS_UP"
 fi
-
-## Tag variables
-test -z "$TAG_NAME" && TAG_NAME=$GIT_BRANCH
-test -z "$TAG_MSG" && TAG_MSG="Auto generated tag message"
-test -z "$NEWEST_TAG" && NEWEST_TAG=$(git describe --abbrev=0 --tags)
-    
 
 echo -e "⬇ Branch to deploy: \"${GREEN}$GIT_BRANCH${NC}\""
 
@@ -135,6 +105,8 @@ generateTag() {
             
             echo ""
             echo "---------------------------------------------"
+            echo "                     TAG                     "
+            echo "---------------------------------------------"
             echo -e "[NAME]= \"${GREEN}$TAG_NAME${NC}\""
             echo -e "[MSG]= \"${GREEN}$TAG_MSG${NC}\""
             echo "---------------------------------------------"
@@ -175,7 +147,9 @@ generateTag() {
 
 # STEP 1 - SHUB FILES
 
-if test $STATE -lt 1; then
+if test $STATE -lt $STATE_STEP_SHUB_FILES_ID; then
+    echo ""
+    echo -e "$GREEN# STEP $STATE_STEP_SHUB_FILES_ID/7 - SHUB FILES$NC"
     echo ""
     echo "🏁 Starting deploy process ..."
     echo "✔ Auto commiting notes ..."
@@ -183,55 +157,79 @@ if test $STATE -lt 1; then
     if ( ! test -f ".gitignore" ) || ( test -f ".gitignore" && ! grep -q .shub ".gitignore" ); then
         echo "✔ Auto commiting shub files ..."
         git add .shub && git commit -m "chore: update shub files"  
+        echo ""
     fi
-    commit_state "1"
+    commit_state "$STATE_STEP_SHUB_FILES_ID"
 fi
 
-# STEP 2 - CHECKOUT & MERGE
+# STEP 2 - CHECKOUT
 
-if test $STATE -lt 2; then
-    echo "---------------------------------------------"
+if test $STATE -lt $STATE_STEP_CHECKOUT_ID; then
+    echo ""
+    echo -e "$GREEN# STEP $STATE_STEP_CHECKOUT_ID/7 - CHECKOUT$NC"
     echo ""
     if [ -z "$ALL" ]; then
-        confirm "Checkout to \"$(echo -e $GREEN"$GIT_DEFAULT_BRANCH"$NC)\" branch & Merge current branch ($GIT_BRANCH) [$(echo -e $GREEN"Y"$NC)/n]? "
+        confirm "Checkout to \"$(echo -e $GREEN"$GIT_DEFAULT_BRANCH"$NC)\" branch [$(echo -e $GREEN"Y"$NC)/n]? "
+        echo ""
     fi
-    { git checkout $GIT_DEFAULT_BRANCH  || { echo -e "$FAILED_MSG" ; exit 1; } } && { git merge $GIT_BRANCH  || { echo -e "$FAILED_MSG" ; exit 1; } }
-    commit_state "2"
+    { git checkout $GIT_DEFAULT_BRANCH  || { echo -e "$FAILED_MSG" ; exit 1; } }
+    commit_state "$STATE_STEP_CHECKOUT_ID"
     echo ""
 fi
 
-# STEP 3 - TAG
+# STEP 3 - MERGE
 
-if test $STATE -lt 3; then
-    echo "---------------------------------------------"
+if test $STATE -lt $STATE_STEP_MERGE_ID; then
+    echo ""
+    echo -e "$GREEN# STEP $STATE_STEP_MERGE_ID/7 - MERGE$NC"
+    echo ""
+    if [ -z "$ALL" ]; then
+        confirm "Merge current branch ($GIT_BRANCH) [$(echo -e $GREEN"Y"$NC)/n]? "
+        echo ""
+    fi
+    { git merge $GIT_BRANCH  || { echo -e "$FAILED_MSG" ; exit 1; } }
+    commit_state "$STATE_STEP_MERGE_ID"
+    echo ""
+fi
+
+# STEP 4 - TAG
+
+if test $STATE -lt $STATE_STEP_TAG_ID; then
+    echo ""
+    echo -e "$GREEN# STEP $STATE_STEP_TAG_ID/7 - TAG$NC"
     echo ""
     generateTag
-    commit_state "3"
+    commit_state "$STATE_STEP_TAG_ID"
     echo ""
 fi
 
-# STEP 4 - DEPLOY BRANCH
+# STEP 5 - DEPLOY BRANCH
 
-if test $STATE -lt 4; then
+if test $STATE -lt $STATE_STEP_DEPLOY_BRANCH_ID; then
+    echo ""
+    echo -e "$GREEN# STEP $STATE_STEP_DEPLOY_BRANCH_ID/7 - DEPLOY BRANCH$NC"
+    echo ""
     if [ -z "$ALL" ]; then
         confirm "Deploy on \"$(echo -e $GREEN"$GIT_DEFAULT_BRANCH"$NC)\" branch [$(echo -e $GREEN"Y"$NC)/n]? "
+        echo ""
     fi
-    echo ""
     echo "🚀 Deploying on \"$(echo -e $GREEN"$GIT_DEFAULT_BRANCH"$NC)\" branch"
     { git push origin $GIT_DEFAULT_BRANCH  || { echo -e "$FAILED_MSG" ; exit 1; } }
-    commit_state "4"
+    commit_state "$STATE_STEP_DEPLOY_BRANCH_ID"
 fi
 
-# STEP 5 - DEPLOY TAG
+# STEP 6 - DEPLOY TAG
 
-echo ""
-if test $STATE -lt 5; then
+if test $STATE -lt $STATE_STEP_DEPLOY_TAG_ID; then
+    echo ""
+    echo -e "$GREEN# STEP $STATE_STEP_DEPLOY_TAG_ID/7 - DEPLOY TAG$NC"
+    echo ""
     if [ -z "$ALL" ]; then
         confirm "Deploy tag \"$(echo -e $GREEN"$TAG_NAME"$NC)\" [$(echo -e $GREEN"Y"$NC)/n]? "
+        echo ""
     fi
-    echo ""
     { git push origin $GIT_DEFAULT_BRANCH --tags  || { echo -e "$FAILED_MSG" ; exit 1; } }
-    commit_state "5"
+    commit_state "$STATE_STEP_DEPLOY_TAG_ID"
     echo ""
     echo -e "${GREEN}"
     echo "#############################################"
@@ -240,9 +238,9 @@ if test $STATE -lt 5; then
     echo ""
 fi
 
-# STEP 6 - NEXT
+# STEP 7 - NEXT
 
-if test $STATE -lt 6; then
+if test $STATE -lt $STATE_STEP_NEXT_ID; then
     if [ -z "$ALL" ]; then
         confirm "Go to next \"$(echo -e $GREEN"$COURSE_TYPE"$NC)\" ($GIT_BRANCH_NEXT_CLASS_LW) [$(echo -e $GREEN"Y"$NC)/n]? " 
     fi
