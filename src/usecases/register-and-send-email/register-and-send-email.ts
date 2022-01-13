@@ -4,7 +4,7 @@ import { Either, left, right } from '@/shared'
 import { UseCase } from '@/usecases/ports'
 import { RegisterUserOnMailingList } from '@/usecases/register-user-on-mailing-list'
 import { SendEmail } from '@/usecases/send-email'
-import { EmailServiceError } from '../errors'
+import { EmailServiceError } from '@/usecases/errors'
 
 export class RegisterAndSendEmail implements UseCase {
   private registerUserOnMailingList: RegisterUserOnMailingList
