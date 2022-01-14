@@ -148,3 +148,9 @@ npm i -D @types/mongodb
 
 ## CLASS-20
 
+## CLASS-21
+
+```sh
+npm i nodemailer
+npm i -D @types/nodemailer
+```
