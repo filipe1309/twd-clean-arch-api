@@ -156,3 +156,6 @@ npm i -D @types/nodemailer
 ```
 ## CLASS-22
 
+```sh
+npm i -D dotenv
+```
