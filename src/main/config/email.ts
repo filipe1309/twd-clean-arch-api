@@ -1,8 +1,8 @@
 import { EmailOptions } from '@/usecases/send-email/ports'
 
 const attachments = [{
-  filename: 'attachment_test.txt',
-  path: '../resources/text.txt',
+  filename: 'clean-architecture.pdf',
+  path: 'https://otaviolemos.github.io/clean-architecture.pdf',
   contentType: 'text/plain'
 }]
 
