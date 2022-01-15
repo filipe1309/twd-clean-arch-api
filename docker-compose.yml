@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  db:
+    image: mongo:4.0.24
+    environment:
+      - MONGO_INITDB_DATABASE=test
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=123mudar
+      - MONGO_APPLICATION_DATABASE=test
+    ports:
+      - 27017:27017
+    volumes:
+      - ./.docker/mongo/db:/data/db

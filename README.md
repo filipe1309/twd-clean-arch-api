@@ -1,7 +1,7 @@
 # <p align="center">TWD Clean Arch API </p>
 
 <p align="center">
-    <!-- <img src="https://img.shields.io/badge/Tools-Docker-informational?style=flat-square&logo=docker&color=2496ED" alt="Docker" /> -->
+    <img src="https://img.shields.io/badge/Tools-Docker-informational?style=flat-square&logo=docker&color=2496ED" alt="Docker" />
     <img src="https://img.shields.io/badge/Code-NodeJS-informational?style=flat-square&logo=node.js&color=339933" alt="NodeJS" />
     <img src="https://img.shields.io/badge/Code-JavaScript-informational?style=flat-square&logo=javascript&color=F7DF1E" alt="JavaScript" />
     <img src="https://img.shields.io/badge/DB-MongoDB-informational?style=flat-square&logo=mongodb&color=47A248" alt="MongoDB" />
@@ -31,16 +31,15 @@ This project was developed following Hotmart's "[Arquitetura Limpa na Prática](
 - [MongoDB](https://www.mongodb.com/)
 - [Heroku](https://www.heroku.com/)
 - [Jest](https://jestjs.io/)
-<!-- - [Docker](https://www.docker.com/)
-- [Docker Compose](https://docs.docker.com/compose/) -->
+- [Docker](https://www.docker.com/)
+- [Docker Compose](https://docs.docker.com/compose/)
 
 ## :scroll: Requirements
 
 - [Node.js](https://nodejs.org/en/)
 - [npm](https://www.npmjs.com/)
-
-<!-- - [Docker](https://www.docker.com/)
-- [Docker Compose](https://docs.docker.com/compose/) -->
+- [Docker](https://www.docker.com/)
+- [Docker Compose](https://docs.docker.com/compose/)
 
 ## :cd: Installation
 
@@ -55,19 +54,31 @@ cd twd-clean-arch-api
 ## :runner: Running
 
 ```sh
+npm run dev
+
 docker-compose up
 ```
 
-> Access http://localhost
+> Access http://localhost:5001/api/register
+> Send a POST request with the following body:
+> ```json
+> {
+>   "name": "John Doe",
+>   "email": "john.doe@test.com",
+> }
 
-<!-- ## :white_check_mark: Tests
+## :white_check_mark: Tests
 
 After up the container:
 
 ```sh
-docker-compose exec -t {{ CONTAINER_SERVICE_NAME }} ./vendor/bin/phpunit
+npm run test
+npm run test-unit
+npm run test-integration
+npms run test-verbose
 ```
 
+<!--
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
